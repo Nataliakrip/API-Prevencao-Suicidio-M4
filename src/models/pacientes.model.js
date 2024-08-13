@@ -1,30 +1,27 @@
-import { DataTypes, Sequelize } from 'sequelize'; 
+import { DataTypes } from 'sequelize';
+import sequelize from '../database/database.js';
 
-const paciente = Sequelize.define('paciente', {
+const paciente = sequelize.define('paciente', {
     name: {
         type: DataTypes.STRING,
         allowNull: true 
     },
-
     email: {
         type: DataTypes.STRING,
         allowNull: true
     },
-
     dataNascimento: {
         type: DataTypes.DATE,
         allowNull: true
     },
-
     telefone: {
         type: DataTypes.STRING,
         allowNull: true
     },
-
     endereco: {
         type: DataTypes.STRING,
         allowNull: true
     },
 });
 
-export { paciente };
+export default paciente;  

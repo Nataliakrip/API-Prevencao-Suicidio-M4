@@ -23,6 +23,15 @@ export const getQuestionnaireById = async (req, res) => {
   }
 };
 
+export const getAllQuestionnaire = async (req, res) => {
+  try {
+      const questionnaires = await Questionnaire.findAll();
+      res.status(200).json({mensage: "lista de questionarios", questionnaires});
+  } catch (error) {
+      res.status(400).json({ error: 'Não foi possível buscar os questionarios', detalhes: error.message });
+  }
+};
+
 export const updateQuestionnaire = async (req, res) => {
   try {
     const { title, description, questions } = req.body;

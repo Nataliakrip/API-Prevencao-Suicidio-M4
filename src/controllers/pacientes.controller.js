@@ -16,7 +16,7 @@ pacienteRouter.post('/pacientes', async (req, res) => {
 pacienteRouter.get('/pacientes', async (req, res) => {
     try {
         const pacientes = await Paciente.findAll();
-        res.json({ message: 'O paciente foi encontrado' });
+        res.status(201).json({ message: 'O paciente foi encontrado' });
     } catch (error) {
         res.status(400).json({ e: 'Não foi possivel encontrar o paciente' });
     }
@@ -27,7 +27,7 @@ pacienteRouter.get('/pacientes/:id', async (req, res) => {
     try {
         const paciente = await Paciente.findByPk(req.params.id);
         if (paciente) {
-            res.json({ message: 'O paciente foi encontrado' });
+            res.status(201).json({ message: 'O paciente foi encontrado' });
         } 
     } catch (error) {
         res.status(400).json({ e:'Não foi possivel encontrar o paciente' });
@@ -40,7 +40,7 @@ pacienteRouter.put('/pacientes/:id', async (req, res) => {
         const paciente = await Paciente.findByPk(req.params.id);
         if (paciente) {
             await paciente.update(req.body);
-            res.json({ message: 'O paciente foi encontrado' });
+            res.status(201).json({ message: 'O paciente foi encontrado' });
         } 
     } catch (error) {
         res.status(400).json({ e:'Não foi possivel encontrar o paciente' });
@@ -53,7 +53,7 @@ pacienteRouter.delete('/pacientes/:id', async (req, res) => {
         const paciente = await Paciente.findByPk(req.params.id);
         if (paciente) {
             await paciente.delete();
-            res.json({ message: 'O paciente foi deletado' });
+            res.status(201).json({ message: 'O paciente foi deletado' });
         } 
     } catch (error) {
         res.status(400).json({ e:'Não foi possivel deletar o paciente'});

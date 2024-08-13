@@ -17,3 +17,5 @@ const Questionnaire = sequelize.define('Questionnaire', {
 });
 
 export default Questionnaire;
+
+

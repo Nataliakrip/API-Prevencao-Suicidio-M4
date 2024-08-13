@@ -46,7 +46,7 @@ export const deleteQuestionnaire = async (req, res) => {
     const questionnaire = await Questionnaire.findByPk(req.params.id);
     if (questionnaire) {
       await questionnaire.destroy();
-      res.status(204).send();
+      res.status(204).send({ message: 'Questionario deletado com sucesso!'});
     } else {
       res.status(404).json({ message: 'Questionário não encontrado' });
     }

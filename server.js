@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import sequelize from './src/database/config.js'; 
+import cors from 'cors';
 import swaggerConfig from './src/doc/swagger.js'; // Importe o arquivo de configuração do Swagger
 import questionnaireRoutes from './src/routers/questionario.routes.js';
 import respostasRoutes from './src/routers/answers.routes.js'
@@ -14,7 +15,15 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+app.use(cors({
+  origin: 'http://127.0.0.1:5500', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
 swaggerConfig(app);
+
 // Rotas da API
 app.use('/api', questionnaireRoutes);
 app.use('/api', respostasRoutes);

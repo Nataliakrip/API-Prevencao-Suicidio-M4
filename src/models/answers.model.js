@@ -1,6 +1,6 @@
 // src/models/resposta.model.js
 import { DataTypes } from 'sequelize';
-import sequelize from '../database/database.js';
+import sequelize from '../database/config.js';
 import Questionnaire from './questionario.model.js';
 
 const Response = sequelize.define('Response', {

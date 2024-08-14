@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database/database.js';
+import sequelize from '../database/config.js';
 
 const Questionnaire = sequelize.define('Questionnaire', {
   title: {
@@ -17,5 +17,4 @@ const Questionnaire = sequelize.define('Questionnaire', {
 });
 
 export default Questionnaire;
-
 

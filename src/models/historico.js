@@ -1,7 +1,6 @@
-
 import sequelize, { DataTypes } from "sequelize";
 
-const Profissional = sequelize.define("Profissional", {
+const Historico = sequelize.define("Historico", {
     id: {
 		type: DataTypes.NUMBER,
 		primaryKey: true,
@@ -15,10 +14,10 @@ const Profissional = sequelize.define("Profissional", {
 		type: DataTypes.NUMBER,
 		allowNull: false,
 	},
-	telefone: {
+	data_e_hora: {
         type: DataTypes.STRING,
         allowNull: false,
     }
 });
 
-export { Profissional };
+export { Historico };

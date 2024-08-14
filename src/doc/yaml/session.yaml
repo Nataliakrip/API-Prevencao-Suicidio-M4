@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: API de Sessões de Aconselhamento e Intervenção
+  version: 1.0.0
+  description: Documentação da API para gerenciamento de sessões de aconselhamento e intervenção.
+paths:
+  /session:
+    post:
+      summary: Cria uma nova sessão de aconselhamento
+      tags:
+        - Sessões
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                counselorName:
+                  type: string
+                  example: Dr. João Silva
+                patientName:
+                  type: string
+                  example: Maria Oliveira
+                date:
+                  type: string
+                  format: date-time
+                  example: "2024-08-15T10:00:00Z"
+                duration:
+                  type: string
+                  example: "1h 30m"
+                notes:
+                  type: string
+                  example: "Discussão sobre os desafios recentes e estratégias de enfrentamento."
+      responses:
+        201:
+          description: Sessão criada com sucesso
+        400:
+          description: Erro ao criar sessão
+
+  /sessions:
+    get:
+      summary: Obtém todas as sessões de aconselhamento
+      tags:
+        - Sessões
+      responses:
+        200:
+          description: Lista de sessões
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    counselorName:
+                      type: string
+                      example: Dr. João Silva
+                    patientName:
+                      type: string
+                      example: Maria Oliveira
+                    date:
+                      type: string
+                      format: date-time
+                      example: "2024-08-15T10:00:00Z"
+                    duration:
+                      type: string
+                      example: "1h 30m"
+                    notes:
+                      type: string
+                      example: "Discussão sobre os desafios recentes e estratégias de enfrentamento."
+        500:
+          description: Erro ao obter sessões
+
+  /sessions/{id}:
+    get:
+      summary: Obtém uma sessão de aconselhamento pelo ID
+      tags:
+        - Sessões
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: Sessão encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  counselorName:
+                    type: string
+                    example: Dr. João Silva
+                  patientName:
+                    type: string
+                    example: Maria Oliveira
+                  date:
+                    type: string
+                    format: date-time
+                    example: "2024-08-15T10:00:00Z"
+                  duration:
+                    type: string
+                    example: "1h 30m"
+                  notes:
+                    type: string
+                    example: "Discussão sobre os desafios recentes e estratégias de enfrentamento."
+        404:
+          description: Sessão não encontrada
+        500:
+          description: Erro ao obter sessão
+
+    put:
+      summary: Atualiza uma sessão de aconselhamento pelo ID
+      tags:
+        - Sessões
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                counselorName:
+                  type: string
+                  example: Dr. João Silva
+                patientName:
+                  type: string
+                  example: Maria Oliveira
+                date:
+                  type: string
+                  format: date-time
+                  example: "2024-08-15T10:00:00Z"
+                duration:
+                  type: string
+                  example: "1h 30m"
+                notes:
+                  type: string
+                  example: "Atualização sobre estratégias de enfrentamento."
+      responses:
+        200:
+          description: Sessão atualizada com sucesso
+        400:
+          description: Erro ao atualizar sessão
+        404:
+          description: Sessão não encontrada
+
+    delete:
+      summary: Remove uma sessão de aconselhamento pelo ID
+      tags:
+        - Sessões
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        204:
+          description: Sessão removida com sucesso
+        404:
+          description: Sessão não encontrada
+        500:
+          description: Erro ao remover sessão

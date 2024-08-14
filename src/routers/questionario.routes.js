@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.post('/questionnaires', createQuestionnaire);
+router.post('/questionnaire', createQuestionnaire);
 router.get('/questionnaires', getAllQuestionnaire);
 router.get('/questionnaires/:id', getQuestionnaireById);
 router.put('/questionnaires/:id', updateQuestionnaire);

@@ -1,0 +1,99 @@
+openapi: 3.0.0
+info:
+  title: API de Prevenção ao Suicídio
+  version: 1.0.0
+  description: Documentação da API de Respostas de Avaliação Mental e Risco de Suicídio
+
+paths:
+  /mental-health-check:
+    post:
+      summary: Cria uma nova resposta de avaliação de saúde mental e risco de suicídio
+      tags:
+        - Respostas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                questionnaireId:
+                  type: integer
+                  example: 1
+                userId:
+                  type: integer
+                  example: 42
+                answers:
+                  type: array
+                  items:
+                    type: string
+                  example: ['Sim', 'Não', 'Às vezes']
+      responses:
+        201:
+          description: Resposta criada com sucesso
+        400:
+          description: Erro ao criar resposta
+
+  /mental-health-checks/{id}:
+    get:
+      summary: Retorna uma resposta específica de avaliação de saúde mental e risco de suicídio
+      tags:
+        - Respostas
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID da resposta
+      responses:
+        200:
+          description: Resposta encontrada com sucesso
+        404:
+          description: Resposta não encontrada
+
+    put:
+      summary: Atualiza uma resposta específica de avaliação de saúde mental e risco de suicídio
+      tags:
+        - Respostas
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID da resposta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: array
+                  items:
+                    type: string
+                  example: ['Sim', 'Não', 'Às vezes']
+      responses:
+        200:
+          description: Resposta atualizada com sucesso
+        400:
+          description: Erro ao atualizar resposta
+
+    delete:
+      summary: Deleta uma resposta específica de avaliação de saúde mental e risco de suicídio
+      tags:
+        - Respostas
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID da resposta
+      responses:
+        204:
+          description: Resposta deletada com sucesso
+        404:
+          description: Resposta não encontrada

@@ -1,0 +1,120 @@
+openapi: 3.0.0
+info:
+  title: API de Prevenção ao Suicídio
+  description: Documentação da API para gerenciamento de Profissionais de Saúde Mental.
+  version: 1.0.0
+
+paths:
+  /professionals:
+    post:
+      summary: Cria um novo profissional de saúde mental.
+      tags:
+        - Professionals
+      requestBody:
+        description: Dados do novo profissional.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professional'
+      responses:
+        '201':
+          description: Profissional criado com sucesso.
+        '400':
+          description: Erro ao criar o profissional.
+
+    get:
+      summary: Retorna todos os profissionais.
+      tags:
+        - Professionals
+      responses:
+        '200':
+          description: Lista de profissionais retornada com sucesso.
+        '400':
+          description: Erro ao buscar os profissionais.
+
+  /professionals/{id}:
+    get:
+      summary: Retorna um profissional específico pelo ID.
+      tags:
+        - Professionals
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do profissional.
+      responses:
+        '200':
+          description: Profissional encontrado com sucesso.
+        '404':
+          description: Profissional não encontrado.
+        '400':
+          description: Erro ao buscar o profissional.
+
+    put:
+      summary: Atualiza um profissional existente.
+      tags:
+        - Professionals
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do profissional.
+      requestBody:
+        description: Dados atualizados do profissional.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professional'
+      responses:
+        '200':
+          description: Profissional atualizado com sucesso.
+        '404':
+          description: Profissional não encontrado.
+        '400':
+          description: Erro ao atualizar o profissional.
+
+    delete:
+      summary: Remove um profissional pelo ID.
+      tags:
+        - Professionals
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID do profissional.
+      responses:
+        '204':
+          description: Profissional removido com sucesso.
+        '404':
+          description: Profissional não encontrado.
+        '400':
+          description: Erro ao remover o profissional.
+
+components:
+  schemas:
+    Professional:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Dr. João Silva
+        specialty:
+          type: string
+          example: Psicólogo
+        contactInfo:
+          type: string
+          example: +55 11 9876-5432
+        address:
+          type: string
+          example: Rua da Saúde, 123, São Paulo - SP
+        email:
+          type: string
+          example: dr.joao@saude.com.br

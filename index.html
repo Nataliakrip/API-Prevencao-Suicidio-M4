@@ -12,7 +12,7 @@
 
     <script>
         document.getElementById('test-cors').addEventListener('click', () => {
-            fetch('http://localhost:3000/api/resources') // Substitua pela URL da sua API
+            fetch('http://localhost:3000/api/pacientes') // Substitua pela URL da sua API
                 .then(response => {
                     if (response.ok) {
                         return response.json();

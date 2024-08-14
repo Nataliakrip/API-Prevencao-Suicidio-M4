@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "install": "npm install express sequelize pg dotenv"
+    "install": "npm install express sequelize pg dotenv",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",

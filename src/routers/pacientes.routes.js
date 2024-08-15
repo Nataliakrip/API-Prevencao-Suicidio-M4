@@ -9,7 +9,7 @@ import {
 
 const pacienteRouter = Router();
 
-pacienteRouter.post('/pacientes', createPaciente);
+pacienteRouter.post('/paciente', createPaciente);
 pacienteRouter.get('/pacientes', getAllPacientes);
 pacienteRouter.get('/pacientes/:id', getPacienteById);
 pacienteRouter.put('/pacientes/:id', updatePaciente);

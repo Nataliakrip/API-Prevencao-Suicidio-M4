@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info:
+  title: API de Recursos de Suporte e Prevenção
+  version: 1.0.0
+  description: Documentação da API para gerenciamento de recursos de suporte e prevenção ao suicídio.
+paths:
+  /resource:
+    post:
+      summary: Cria um novo recurso de suporte
+      tags:
+        - Recursos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Linha de Apoio à Vida
+                description:
+                  type: string
+                  example: Uma linha telefônica disponível 24 horas para ajudar pessoas em crise.
+                contactInfo:
+                  type: string
+                  example: "+55 11 1234-5678"
+                link:
+                  type: string
+                  example: "http://www.apoioavida.com.br"
+      responses:
+        201:
+          description: Recurso criado com sucesso
+        400:
+          description: Erro ao criar recurso
+
+  /resources:
+    get:
+      summary: Obtém todos os recursos de suporte
+      tags:
+        - Recursos
+      responses:
+        200:
+          description: Lista de recursos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    title:
+                      type: string
+                      example: Linha de Apoio à Vida
+                    description:
+                      type: string
+                      example: Uma linha telefônica disponível 24 horas para ajudar pessoas em crise.
+                    contactInfo:
+                      type: string
+                      example: "+55 11 1234-5678"
+                    link:
+                      type: string
+                      example: "http://www.apoioavida.com.br"
+        500:
+          description: Erro ao obter recursos
+
+  /resources/{id}:
+    get:
+      summary: Obtém um recurso de suporte pelo ID
+      tags:
+        - Recursos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: Recurso encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: Linha de Apoio à Vida
+                  description:
+                    type: string
+                    example: Uma linha telefônica disponível 24 horas para ajudar pessoas em crise.
+                  contactInfo:
+                    type: string
+                    example: "+55 11 1234-5678"
+                  link:
+                    type: string
+                    example: "http://www.apoioavida.com.br"
+        404:
+          description: Recurso não encontrado
+        500:
+          description: Erro ao obter recurso
+
+    put:
+      summary: Atualiza um recurso de suporte pelo ID
+      tags:
+        - Recursos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Linha de Apoio à Vida Atualizada
+                description:
+                  type: string
+                  example: Linha telefônica disponível 24 horas com novos serviços.
+                contactInfo:
+                  type: string
+                  example: "+55 11 9876-5432"
+                link:
+                  type: string
+                  example: "http://www.novosite.com.br"
+      responses:
+        200:
+          description: Recurso atualizado com sucesso
+        400:
+          description: Erro ao atualizar recurso
+        404:
+          description: Recurso não encontrado
+
+    delete:
+      summary: Remove um recurso de suporte pelo ID
+      tags:
+        - Recursos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        204:
+          description: Recurso removido com sucesso
+        404:
+          description: Recurso não encontrado
+        500:
+          description: Erro ao remover recurso

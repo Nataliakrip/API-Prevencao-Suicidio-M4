@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: API de Pacientes
+  version: 1.0.0
+  description: Documentação da API para gerenciamento de pacientes.
+paths:
+  /paciente:
+    post:
+      summary: Cria um novo paciente
+      tags:
+        - Pacientes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: João da Silva
+                email:
+                  type: string
+                  example: joao.silva@example.com
+                dataNascimento:
+                  type: string
+                  format: date
+                  example: '1990-05-15'
+                telefone:
+                  type: string
+                  example: '+55 11 98765-4321'
+                endereco:
+                  type: string
+                  example: Rua das Flores, 123, São Paulo, SP
+      responses:
+        201:
+          description: Paciente criado com sucesso
+        400:
+          description: Erro ao criar paciente
+          
+  /pacientes:
+    get:
+      summary: Obtém todos os pacientes
+      tags:
+        - Pacientes
+      responses:
+        200:
+          description: Lista de pacientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: João da Silva
+                    email:
+                      type: string
+                      example: joao.silva@example.com
+                    dataNascimento:
+                      type: string
+                      format: date
+                      example: '1990-05-15'
+                    telefone:
+                      type: string
+                      example: '+55 11 98765-4321'
+                    endereco:
+                      type: string
+                      example: Rua das Flores, 123, São Paulo, SP
+        500:
+          description: Erro ao obter pacientes
+          
+  /pacientes/{id}:
+    get:
+      summary: Obtém um paciente pelo ID
+      tags:
+        - Pacientes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: Paciente encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: João da Silva
+                  email:
+                    type: string
+                    example: joao.silva@example.com
+                  dataNascimento:
+                    type: string
+                    format: date
+                    example: '1990-05-15'
+                  telefone:
+                    type: string
+                    example: '+55 11 98765-4321'
+                  endereco:
+                    type: string
+                    example: Rua das Flores, 123, São Paulo, SP
+        404:
+          description: Paciente não encontrado
+        500:
+          description: Erro ao obter paciente
+
+    put:
+      summary: Atualiza um paciente pelo ID
+      tags:
+        - Pacientes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: João da Silva
+                email:
+                  type: string
+                  example: joao.silva@example.com
+                dataNascimento:
+                  type: string
+                  format: date
+                  example: '1990-05-15'
+                telefone:
+                  type: string
+                  example: '+55 11 98765-4321'
+                endereco:
+                  type: string
+                  example: Rua das Flores, 123, São Paulo, SP
+      responses:
+        200:
+          description: Paciente atualizado com sucesso
+        400:
+          description: Erro ao atualizar paciente
+        404:
+          description: Paciente não encontrado
+          
+    delete:
+      summary: Remove um paciente pelo ID
+      tags:
+        - Pacientes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        204:
+          description: Paciente removido com sucesso
+        404:
+          description: Paciente não encontrado
+        500:
+          description: Erro ao remover paciente

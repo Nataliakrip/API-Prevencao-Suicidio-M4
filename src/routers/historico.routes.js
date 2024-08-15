@@ -4,15 +4,15 @@ import {
     getById,
     updateHistoricoById,
     createHistorico
-} from "../controllers/historico.js";
+} from "../controllers/historico.controller.js";
 import { Router } from "express";
 
-const historicoRouter = Router();
+const router = Router();
 
-historicoRouter.get("/historicos/all", getAllHistoricos);
-historicoRouter.post("/historicos", createHistorico);
-historicoRouter.get("/historicos/:id", getById);
-historicoRouter.delete("/historicos/:id", deleteById);
-historicoRouter.put("/historicos/:id", updateHistoricoById);
+router.get("/historicos/all", getAllHistoricos);
+router.post("/historicos", createHistorico);
+router.get("/historicos/:id", getById);
+router.delete("/historicos/:id", deleteById);
+router.put("/historicos/:id", updateHistoricoById);
 
-export { historicoRouter };
+export default router;

@@ -1,0 +1,197 @@
+openapi: 3.0.0
+info:
+  title: API de Questionários
+  version: 1.0.0
+  description: Documentação da API para gerenciamento de questionários.
+paths:
+  /questionnaire:
+    post:
+      summary: Cria um novo questionário
+      tags:
+        - Questionários
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Questionário de Saúde Mental
+                description:
+                  type: string
+                  example: Questionário para avaliar o estado mental do paciente.
+                questions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      question:
+                        type: string
+                        example: Como você se sente hoje?
+                      options:
+                        type: array
+                        items:
+                          type: string
+                          example: Muito bem
+                        example: [Muito bem, Bem, Regular, Mal, Muito mal]
+      responses:
+        201:
+          description: Questionário criado com sucesso
+        400:
+          description: Erro ao criar questionário
+          
+  /questionnaires:
+    get:
+      summary: Obtém todos os questionários
+      tags:
+        - Questionários
+      responses:
+        200:
+          description: Lista de questionários
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    title:
+                      type: string
+                      example: Questionário de Saúde Mental
+                    description:
+                      type: string
+                      example: Questionário para avaliar o estado mental do paciente.
+                    questions:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          question:
+                            type: string
+                            example: Como você se sente hoje?
+                          options:
+                            type: array
+                            items:
+                              type: string
+                              example: Muito bem
+                            example: [Muito bem, Bem, Regular, Mal, Muito mal]
+        500:
+          description: Erro ao obter questionários
+          
+  /questionnaires/{id}:
+    get:
+      summary: Obtém um questionário pelo ID
+      tags:
+        - Questionários
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        200:
+          description: Questionário encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: Questionário de Saúde Mental
+                  description:
+                    type: string
+                    example: Questionário para avaliar o estado mental do paciente.
+                  questions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        question:
+                          type: string
+                          example: Como você se sente hoje?
+                        options:
+                          type: array
+                          items:
+                            type: string
+                            example: Muito bem
+                          example: [Muito bem, Bem, Regular, Mal, Muito mal]
+        404:
+          description: Questionário não encontrado
+        500:
+          description: Erro ao obter questionário
+
+    put:
+      summary: Atualiza um questionário pelo ID
+      tags:
+        - Questionários
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Questionário de Saúde Mental Atualizado
+                description:
+                  type: string
+                  example: Questionário atualizado para avaliar o estado mental do paciente.
+                questions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      question:
+                        type: string
+                        example: Como você se sente hoje?
+                      options:
+                        type: array
+                        items:
+                          type: string
+                          example: Muito bem
+                        example: [Muito bem, Bem, Regular, Mal, Muito mal]
+      responses:
+        200:
+          description: Questionário atualizado com sucesso
+        400:
+          description: Erro ao atualizar questionário
+        404:
+          description: Questionário não encontrado
+          
+    delete:
+      summary: Remove um questionário pelo ID
+      tags:
+        - Questionários
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        204:
+          description: Questionário removido com sucesso
+        404:
+          description: Questionário não encontrado
+        500:
+          description: Erro ao remover questionário

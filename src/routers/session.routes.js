@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.post('/sessions', createSession);
+router.post('/session', createSession);
 router.get('/sessions', getAllSessions);
 router.get('/sessions/:id', getSessionById);
 router.put('/sessions/:id', updateSession);

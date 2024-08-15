@@ -1,23 +1,20 @@
-import sequelize, { DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
+import sequelize from '../database/config.js';
 
 const Historico = sequelize.define("Historico", {
-    id: {
-		type: DataTypes.NUMBER,
-		primaryKey: true,
-		autoIncrement: true,
-	},
 	nome: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
 	idade: {
-		type: DataTypes.NUMBER,
+		type: DataTypes.INTEGER,
 		allowNull: false,
 	},
 	data_e_hora: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: false,
     }
 });
+
 
 export { Historico };

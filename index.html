@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Test</title>
+</head>
+<body>
+    <h1>Testar CORS</h1>
+    <button id="test-cors">Testar Requisição CORS</button>
+    <pre id="result"></pre>
+
+    <script>
+        document.getElementById('test-cors').addEventListener('click', () => {
+            fetch('http://localhost:3000/api/pacientes') // Substitua pela URL da sua API
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById('result').textContent = 'Erro: ' + error.message;
+                });
+        });
+    </script>
+</body>
+</html>

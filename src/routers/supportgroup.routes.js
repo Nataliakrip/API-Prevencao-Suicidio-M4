@@ -8,6 +8,7 @@ import {
 } from '../controllers/supportgroup.controller.js';
 
 const router = express.Router();
+
 router.post('/group', createGroup);
 router.get('/groups', getAllGroup);
 router.get('/group/:id', getGroupById);

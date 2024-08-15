@@ -8,8 +8,9 @@ import respostasRoutes from './src/routers/answers.routes.js'
 import pacienteRouter from './src/routers/pacientes.routes.js';
 import resourceRouter from './src/routers/resource.routes.js';
 import sessionRouter from './src/routers/session.routes.js';
-import professionalRouter from './src/routers/professional.routes.js'
-import historicoRouter from './src/routers/historico.routes.js'
+import professionalRouter from './src/routers/professional.routes.js';
+import historicoRouter from './src/routers/historico.routes.js';
+import supportRouter from './src/routers/supportgroup.routes.js'
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,7 +33,8 @@ app.use('/api', pacienteRouter);
 app.use('/api', resourceRouter);
 app.use('/api', sessionRouter);
 app.use('/api', professionalRouter);
-app.use('/api', historicoRouter)
+app.use('/api', historicoRouter);
+app.use('/api', supportRouter)
 
 app.get('/', (req, res) => {
   res.send('API de Saúde Mental e Prevenção ao Suicídio está funcionando!');

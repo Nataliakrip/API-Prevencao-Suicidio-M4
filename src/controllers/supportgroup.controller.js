@@ -1,6 +1,6 @@
 import Group from '../models/supportgroup.model.js'
 
-export const CreateGroup = async (req, res) => {
+export const createGroup = async (req, res) => {
   try {
     const group = await Group.create(req.body);
     res.status(201).json({ message: 'Group created successfully', group });
@@ -9,7 +9,7 @@ export const CreateGroup = async (req, res) => {
   }
 };
 
-export const getAllGroups = async (req, res) => {
+export const getAllGroup = async (req, res) => {
   try {
     const groups = await Group.findAll();
     res.status(200).json(groups);
